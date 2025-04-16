@@ -1,4 +1,4 @@
--- Functionality to Auto-Reroll (hi there)
+-- Functionality to Auto-Reroll well
 local running = false
 local rerollButton = nil
 local enchantText = nil  -- We'll use this to detect the enchant type
