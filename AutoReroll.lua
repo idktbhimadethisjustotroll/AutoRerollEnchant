@@ -1,23 +1,30 @@
--- Functionality to Auto-Reroll
+-- Functionality to Auto-Reroll (hi there)
 local running = false
 local rerollButton = nil
 local enchantText = nil  -- We'll use this to detect the enchant type
 
 -- Debugging function to print button information
 local function debugButtonSearch()
+    -- Print all TextButton elements in PlayerGui to help debug
     for _, obj in pairs(game.Players.LocalPlayer.PlayerGui:GetDescendants()) do
         if obj:IsA("TextButton") then
-            print("Found TextButton: " .. obj.Name .. " | Text: " .. obj.Text)
+            print("Found TextButton - Name: " .. obj.Name .. " | Text: " .. obj.Text .. " | ClassName: " .. obj.ClassName)
         end
     end
 end
 
 -- Find the reroll button (search in PlayerGui and other UI containers)
 for _, obj in pairs(game.Players.LocalPlayer.PlayerGui:GetDescendants()) do
-    if obj:IsA("TextButton") and obj.Text:match("Reroll") then  -- Matching "Reroll" in the button's text
-        rerollButton = obj
-        print("Found Reroll Button: " .. obj.Name)
-        break
+    if obj:IsA("TextButton") then
+        -- Log button properties to debug
+        print("Checking Button - Name: " .. obj.Name .. " | Text: " .. obj.Text .. " | ClassName: " .. obj.ClassName)
+        
+        -- We are specifically looking for a TextButton with 'Reroll' in the text or name
+        if obj.Text:match("Reroll") or obj.Name:match("Reroll") then
+            rerollButton = obj
+            print("Found Reroll Button: " .. obj.Name)
+            break
+        end
     end
 end
 
